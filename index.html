@@ -1,14 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="light" lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto Web Coding</title>
-  <link rel="stylesheet" href="src/css/style.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Aquacife - Login</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+    <!-- CSS correto -->
+    <link rel="stylesheet" href="src/css/style.css"/>
 </head>
-<body>
-  <h1>Bem-vindo ao Projeto Web Coding</h1>
-  <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae deserunt sit autem. Aut eveniet, illo asperiores, ab voluptatem officia suscipit laudantium deleniti odit nam dolore similique beatae esse corrupti repellat!</h1>
-  <script src="src/js/script.js"></script>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+
+<div class="background">
+    <div class="content-center">
+        <div class="title-group">
+            <span class="material-symbols-outlined logo-icon">water_drop</span>
+            <h1 class="logo-title">Aquacife</h1>
+        </div>
+
+        <div class="buttons-mode">
+            <button id="btnSimplificado" class="btn-primary">Simplificado</button>
+            <button id="btnDetalhado" class="btn-outline">Detalhado</button>
+        </div>
+
+        <h2 id="description" class="description">
+            Site para denunciar problemas envolvendo água e saneamento básico em Recife
+        </h2>
+    </div>
+
+    <div class="bottom-area">
+        <div class="action-buttons">
+            <button id="btnLogin" class="btn-glass">Login</button>
+            <button id="btnCadastro" class="btn-glass">Cadastro</button>
+        </div>
+
+        <button id="btnSemLogin" class="btn-glass-wide">Entrar sem login</button>
+    </div>
+</div>
+
+<!-- Modal dos formulários -->
+<div id="formContainer" class="form-container hidden">
+    <div class="form-box">
+        <h2 id="formTitle" class="form-title"></h2>
+
+        <form id="dynamicForm" class="form-fields"></form>
+
+        <button id="closeForm" class="close-btn">Fechar</button>
+    </div>
+</div>
+
+<!-- JS correto -->
+<script src="src/js/script.js"></script>
+
 </body>
 </html>
