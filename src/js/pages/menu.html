@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aquacife - Menu</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E90FF",
+                        accent: "#FFD700",
+                        "background-dark": "#101922",
+                        "background-light": "#f6f7f8",
+                    },
+                    fontFamily: {
+                        display: ["Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "xl": "2rem",
+                        "full": "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-white">
+
+<!-- Fundo igual ao da tela inicial -->
+<div class="min-h-screen w-full bg-cover bg-center bg-no-repeat"
+     style='background-image: 
+     linear-gradient(rgba(13, 30, 45, 0.75), rgba(0, 31, 63, 0.9)), 
+     url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6lAUBk07Wpi0aWbUM9utneFcmBo15Y855EPZPgf-_ScYsXAcKlrBusQJTVH1CzfwHxqlM-X2SqIqSaeBFkRCingfWs8nzEOshHoO42WPfgafjg-LFLGOAdsMFiK81ibU7NxWntRhcSF4WqkLQo0mMgulxYe7x-bbsMQ7yrPW4tFHxCib5-qs-r_xJ6XIKyLEf4f9MrAAXzr_GsFrPNf0gqWuUjEjttYjf8cvHGBIxON6vcNObfS8pe-LwIVFWAJTw3rG5zi1AJ9vH");'>
+
+    <!-- Cabeçalho -->
+    <header class="w-full flex items-center justify-between p-5 px-8 text-white">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-4xl text-[#1E90FF]">water_drop</span>
+            <h1 class="text-4xl font-black tracking-tight text-[#1E90FF]">Aquacife</h1>
+        </div>
+
+        <!-- Botão Sair (corrigido) -->
+        <button 
+            onclick="window.location.href='../../../index.html'"
+    class="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-bold hover:bg-white/20 transition">
+    Sair
+        </button>
+    </header>
+
+    <!-- Título -->
+    <h2 class="text-center text-white text-3xl font-bold mt-6">
+        Menu Principal
+    </h2>
+
+    <!-- Grid de Cards -->
+    <main class="mt-10 px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+            <!-- CARD 1 -->
+            <a href="fazerDenuncia.html"
+               class="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-white text-center shadow-lg 
+                      hover:bg-white/20 transition transform hover:scale-[1.03]">
+                <span class="material-symbols-outlined text-5xl mb-3 text-accent">campaign</span>
+                <h3 class="text-xl font-bold">Fazer Denúncia</h3>
+                <p class="text-slate-200 text-sm mt-1">
+                    Reporte problemas de abastecimento e saneamento.
+                </p>
+            </a>
+
+            <!-- CARD 2 -->
+            <a href="mapa.html"
+               class="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-white text-center shadow-lg 
+                      hover:bg-white/20 transition transform hover:scale-[1.03]">
+                <span class="material-symbols-outlined text-5xl mb-3 text-accent">map</span>
+                <h3 class="text-xl font-bold">Mapa Interativo</h3>
+                <p class="text-slate-200 text-sm mt-1">
+                    Veja denúncias e informações em tempo real.
+                </p>
+            </a>
+
+            <!-- CARD 3 -->
+            <a href="forum.html"
+               class="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-white text-center shadow-lg 
+                      hover:bg-white/20 transition transform hover:scale-[1.03]">
+                <span class="material-symbols-outlined text-5xl mb-3 text-accent">groups</span>
+                <h3 class="text-xl font-bold">Fórum da Comunidade</h3>
+                <p class="text-slate-200 text-sm mt-1">
+                    Participe das discussões e colabore com outros moradores.
+                </p>
+            </a>
+
+            <!-- CARD 4 -->
+            <a href="sobre.html"
+               class="bg-white/10 backdrop-blur-md p-6 rounded-2xl text-white text-center shadow-lg 
+                      hover:bg-white/20 transition transform hover:scale-[1.03]">
+                <span class="material-symbols-outlined text-5xl mb-3 text-accent">info</span>
+                <h3 class="text-xl font-bold">Sobre Nós</h3>
+                <p class="text-slate-200 text-sm mt-1">
+                    Conheça mais sobre o propósito do Aquacife.
+                </p>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Seção extra para gerar SCROLL (combina com o tema) -->
+    <section class="mt-20 px-6 pb-10 max-w-3xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center shadow-lg">
+            <h3 class="text-2xl font-bold text-accent mb-2">Novidades em breve</h3>
+            <p class="text-slate-200 text-sm">
+                Estamos trabalhando em novas funcionalidades, melhorias e integração com sistemas públicos.
+                Fique atento às próximas atualizações!
+            </p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="w-full text-center py-6 mt-10 text-slate-300 text-sm">
+        © 2025 Aquacife. Todos os direitos reservados.
+    </footer>
+
+</div>
+
+</body>
+</html>
