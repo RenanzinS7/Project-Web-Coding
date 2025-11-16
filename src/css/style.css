@@ -1,7 +1,140 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fafafa;
-  color: #333;
-  text-align: center;
-  margin-top: 50px;
+.background {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(13, 30, 45, 0.6), rgba(0, 31, 63, 0.8)),
+        url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6lAUBk07Wpi0aWbUM9utneFcmBo15Y855EPZPgf-_ScYsXAcKlrBusQJTVH1CzfwHxqlM-X2SqIqSaeBFkRCingfWs8nzEOshHoO42WPfgafjg-LFLGOAdsMFiK81ibU7NxWntRhcSF4WqkLQo0mMgulxYe7x-bbsMQ7yrPW4tFHxCib5-qs-r_xJ6XIKyLEf4f9MrAAXzr_GsFrPNf0gqWuUjEjttYjf8cvHGBIxON6vcNObfS8pe-LwIVFWAJTw3rG5zi1AJ9vH");
+    background-size: cover;
+    background-position: center;
+}
+
+.content-center {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 5rem;
+    text-align: center;
+    color: white;
+}
+
+.title-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    color: #1E90FF;
+}
+
+.logo-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #1E90FF;
+}
+
+.buttons-mode {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    flex: 1;
+    background: #FFD700;
+    color: #001F3F;
+    padding: 0.8rem;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+.btn-outline {
+    flex: 1;
+    border: 2px solid #1E90FF;
+    color: #1E90FF;
+    background: transparent;
+    padding: 0.8rem;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+.description {
+    margin-top: 1.5rem;
+    max-width: 600px;
+    width: 90%;
+    color: #e5e7eb;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Bottom buttons */
+.bottom-area {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-glass,
+.btn-glass-wide {
+    color: white;
+    background: rgba(255,255,255,0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    font-weight: bold;
+}
+
+.btn-glass-wide {
+    margin-top: 1rem;
+}
+
+/* Modal */
+.form-container {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 450px;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form-fields input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.close-btn {
+    background: #001F3F;
+    color: white;
+    padding: 0.8rem;
+    border-radius: 999px;
+    width: 100%;
+    font-weight: bold;
 }
