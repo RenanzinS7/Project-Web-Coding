@@ -53,5 +53,6 @@ closeForm.onclick = () => {
 /* ENTRAR SEM LOGIN */
 
 document.getElementById("btnSemLogin").onclick = () => {
-    window.location.href = "pages/menu.html"; 
+    window.location.href = "src/js/pages/menu.html";
+ 
 };
