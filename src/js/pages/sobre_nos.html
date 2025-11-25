@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aquacife — Sobre Nós</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1E90FF",
+            accent: "#FFD700",
+            "background-dark": "#101922",
+            "background-light": "#f6f7f8"
+          },
+          fontFamily: { display: ["Public Sans", "sans-serif"] },
+          borderRadius: { xl: "2rem", full: "9999px" }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Public Sans', sans-serif; }
+
+    /* Fundo igual ao menu e denúncia */
+    .page-bg {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(13,30,45,0.75), rgba(0,31,63,0.9)),
+        url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6lAUBk07Wpi0aWbUM9utneFcmBo15Y855EPZPgf-_ScYsXAcKlrBusQJTVH1CzfwHxqlM-X2SqIqSaeBFkRCingfWs8nzEOshHoO42WPfgafjg-LFLGOAdsMFiK81ibU7NxWntRhcSF4WqkLQo0mMgulxYe7x-bbsMQ7yrPW4tFHxCib5-qs-r_xJ6XIKyLEf4f9MrAAXzr_GsFrPNf0gqWuUjEjttYjf8cvHGBIxON6vcNObfS8pe-LwIVFWAJTw3rG5zi1AJ9vH");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+
+<body class="page-bg text-white">
+
+  <!-- HEADER igual ao denúncia -->
+  <header class="w-full flex items-center justify-between p-5 px-8">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-4xl text-primary">water_drop</span>
+      <h1 class="text-3xl font-black text-primary">Aquacife</h1>
+    </div>
+
+    <button onclick="window.location.href='menu.html'"
+      class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-bold hover:bg-white/20 transition">
+      <span class="material-symbols-outlined align-middle">arrow_back</span>
+      <span class="ml-1 hidden sm:inline align-middle">Menu</span>
+    </button>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-4xl mx-auto px-6 pb-20">
+
+    <!-- Card principal -->
+    <section class="glass-card rounded-2xl p-8 mt-8 shadow-lg">
+      <h2 class="text-3xl font-bold">Sobre Nós</h2>
+      <p class="text-slate-200 mt-2 max-w-prose">
+        Conheça os estudantes responsáveis pelo desenvolvimento do Aquacife e o propósito deste projeto.
+      </p>
+
+      <!-- Card informativo -->
+      <div class="glass-card rounded-xl p-6 mt-6 border border-white/10">
+        <h3 class="text-xl font-bold text-accent">Sobre o Projeto</h3>
+        <p class="text-slate-200 mt-2 leading-relaxed">
+          O Aquacife foi desenvolvido por alunos da Faculdade Uninassau Recife,
+          do curso de <strong>Ciências da Computação</strong>, para a disciplina de
+          <strong>Web Coding</strong>.  
+          <br><br>
+          O objetivo do projeto é oferecer aos cidadãos recifenses uma forma simples e eficiente de denunciar
+          problemas relacionados ao abastecimento de água e saneamento básico, contribuindo para o cuidado e
+          melhoria da cidade.
+        </p>
+      </div>
+
+      <!-- Lista de perfis -->
+      <h3 class="text-2xl font-bold mt-10 mb-4">Equipe de Desenvolvimento</h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+
+        <!-- Modelo de perfil (repetido 7x) -->
+        <!-- Use o mesmo estilo glass do restante -->
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Renan Cardoso</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Dayvson Vinicius</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Sergio Guilherme</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Breno Luís</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Plínio Davi</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Luiz Antonio</p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 text-center border border-white/10">
+          <div class="w-24 h-24 bg-white/10 rounded-full mx-auto flex items-center justify-center backdrop-blur-sm">
+            <span class="material-symbols-outlined text-5xl text-white">person</span>
+          </div>
+          <p class="mt-3 text-lg font-semibold">Gustavo Andrey</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-center text-slate-300 text-sm">
+      © 2025 Aquacife. Todos os direitos reservados.
+    </footer>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aquacife — Mapa Interativo</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1E90FF",
+            accent: "#FFD700",
+            "background-dark": "#101922",
+            "background-light": "#f6f7f8"
+          },
+          fontFamily: { display: ["Public Sans", "sans-serif"] },
+          borderRadius: { xl: "2rem", full: "9999px" }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Public Sans', sans-serif; }
+    .page-bg {
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(13,30,45,0.75), rgba(0,31,63,0.9)),
+        url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6lAUBk07Wpi0aWbUM9utneFcmBo15Y855EPZPgf-_ScYsXAcKlrBusQJTVH1CzfwHxqlM-X2SqIqSaeBFkRCingfWs8nzEOshHoO42WPfgafjg-LFLGOAdsMFiK81ibU7NxWntRhcSF4WqkLQo0mMgulxYe7x-bbsMQ7yrPW4tFHxCib5-qs-r_xJ6XIKyLEf4f9MrAAXzr_GsFrPNf0gqWuUjEjttYjf8cvHGBIxON6vcNObfS8pe-LwIVFWAJTw3rG5zi1AJ9vH");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+    }
+    #map { width:100%; height:520px; }
+    .leaflet-container { border-radius: 1rem; }
+    .leaflet-popup-content-wrapper { border-radius: 0.8rem; }
+    .marker-title { font-weight:700; color:#0f3b6b; }
+    .marker-type { font-size:0.95rem; color:#555; margin-top:6px; }
+  </style>
+</head>
+<body class="page-bg">
+
+  <header class="w-full flex items-center justify-between p-5 px-8">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-4xl text-[#1E90FF]">water_drop</span>
+      <h1 class="text-3xl font-black text-[#1E90FF]">Aquacife</h1>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button id="btnToDenuncia"
+        class="px-4 py-2 bg-accent text-primary font-bold rounded-full hover:scale-[1.02] transition">
+        Nova Denúncia
+      </button>
+
+      <button id="btnBackMenu"
+        class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-bold hover:bg-white/20 transition">
+        <span class="material-symbols-outlined align-middle">arrow_back</span>
+        <span class="ml-1 align-middle hidden sm:inline">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 pb-20">
+    <section class="glass-card rounded-2xl p-6 mt-6 shadow-lg">
+      <h2 class="text-2xl font-bold text-white">Mapa Interativo — Recife</h2>
+      <p class="text-slate-200 mt-1 max-w-prose">Arraste o mapa e clique nos alfinetes para ver denúncias de exemplo. Use o botão “Nova Denúncia” para criar um novo relato.</p>
+
+      <div class="mt-4">
+        <div id="map" class="rounded-xl overflow-hidden border border-white/10"></div>
+      </div>
+
+      <div class="mt-4 flex gap-3">
+        <button id="btnCenterRecife" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition">Centralizar Recife</button>
+        <button id="btnToggleMarkers" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition">Ocultar/Mostrar Pins</button>
+        <div class="ml-auto text-slate-300">Exemplos de denúncias marcadas no mapa</div>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <div class="glass-card rounded-2xl p-6 mt-2 shadow-lg">
+        <h3 class="text-lg font-bold text-accent">Novidades</h3>
+        <p class="text-slate-200 mt-2">Em breve: filtros por tipo, buscar endereço e exportar relatórios.</p>
+      </div>
+    </section>
+
+    <footer class="mt-8 text-center text-slate-300 text-sm">© 2025 Aquacife. Todos os direitos reservados.</footer>
+  </main>
+
+  <script>
+    const recifeCenter = { lat: -8.05428, lng: -34.8813 };
+
+    const markersData = [
+      { lat: -8.0570, lng: -34.8825, title: 'Vazamento - Rua dos Andradas', type: 'Vazamento', desc: 'Vazamento em cano principal, água jorrando desde manhã.' },
+      { lat: -8.0505, lng: -34.8800, title: 'Falta de água - Bairro A', type: 'Falta de água', desc: 'Sem abastecimento desde ontem à noite.' },
+      { lat: -8.0490, lng: -34.8745, title: 'Esgoto - Rua B', type: 'Esgoto', desc: 'Esgoto estourado e mau cheiro forte.' },
+      { lat: -8.0600, lng: -34.8850, title: 'Vazamento - Avenida C', type: 'Vazamento', desc: 'Canal rompido na via, prejudicando o trânsito.' },
+      { lat: -8.0565, lng: -34.8760, title: 'Falta de água - Zona Norte', type: 'Falta de água', desc: 'Casa sem água para uso básico.' },
+      { lat: -8.0450, lng: -34.8830, title: 'Esgoto - Praça D', type: 'Esgoto', desc: 'Esgoto a céu aberto próximo a praça.' },
+      { lat: -8.0615, lng: -34.8795, title: 'Vazamento - Rua E', type: 'Vazamento', desc: 'Vazamento subterrâneo causando afundamento.' },
+      { lat: -8.0520, lng: -34.8890, title: 'Outros - Zona Leste', type: 'Outros', desc: 'Descarte irregular de resíduos próximo à rede.' },
+      { lat: -8.0585, lng: -34.8715, title: 'Falta de água - Conjunto', type: 'Falta de água', desc: 'Reservatório seco, moradores sem água.' },
+      { lat: -8.0475, lng: -34.8780, title: 'Vazamento - Travessa F', type: 'Vazamento', desc: 'Vazamento pequeno, já sinalizado por vizinhos.' },
+      { lat: -8.0535, lng: -34.8685, title: 'Esgoto - Rua G', type: 'Esgoto', desc: 'Canal obstruído causando refluxo.' },
+      { lat: -8.0590, lng: -34.8875, title: 'Vazamento - Bairro H', type: 'Vazamento', desc: 'Água correndo pela calçada.' }
+    ];
+
+    const map = L.map('map', { center: [recifeCenter.lat, recifeCenter.lng], zoom: 13, gestureHandling: true });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const markers = [];
+    markersData.forEach((m) => {
+      const mk = L.marker([m.lat, m.lng]).addTo(map);
+      const popupHtml = '<div style="max-width:220px;"><div class="marker-title" style="font-weight:700;color:#0f3b6b;margin-bottom:6px;">' + m.title + '</div>' +
+                        '<div class="marker-type" style="font-size:0.95rem;color:#333;margin-bottom:6px;"><strong>Tipo:</strong> ' + m.type + '</div>' +
+                        '<div style="color:#111;">' + m.desc + '</div>' +
+                        '<div style="margin-top:8px;"><button onclick="openDenunciaSample();" style="background:#1E90FF;color:#fff;padding:6px 8px;border-radius:6px;border:none;cursor:pointer;">Ver detalhes</button></div>' +
+                        '</div>';
+      mk.bindPopup(popupHtml);
+      markers.push(mk);
+    });
+
+    function openDenunciaSample(){
+      alert('Exemplo: abrir página de detalhes da denúncia (a implementar).');
+    }
+
+    document.getElementById('btnCenterRecife').addEventListener('click', () => {
+      map.setView([recifeCenter.lat, recifeCenter.lng], 13);
+    });
+
+    let shown = true;
+    document.getElementById('btnToggleMarkers').addEventListener('click', () => {
+      if (shown) {
+        markers.forEach(m => map.removeLayer(m));
+        shown = false;
+      } else {
+        markers.forEach(m => m.addTo(map));
+        shown = true;
+      }
+    });
+
+    document.getElementById('btnToDenuncia').addEventListener('click', () => {
+      window.location.href = 'fazerDenuncia.html';
+    });
+
+    document.getElementById('btnBackMenu').addEventListener('click', () => {
+      window.location.href = 'menu.html';
+    });
+
+  </script>
+</body>
+</html>
