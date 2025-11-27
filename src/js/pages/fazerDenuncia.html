@@ -8,7 +8,7 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Fonts / Icons -->
+  <!-- Fontes / Icones -->
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
@@ -32,7 +32,7 @@
 
   <style>
     body { font-family: 'Public Sans', sans-serif; }
-    /* shared background like menu/login */
+    
     .page-bg {
       min-height: 100vh;
       background-image:
@@ -42,14 +42,14 @@
       background-position: center;
     }
 
-    /* central card visual */
+    
     .glass-card {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(8px);
     }
 
-    /* small polish for file inputs previews */
+    
     .preview-media img,
     .preview-media video {
       border-radius: 0.75rem;
@@ -59,19 +59,19 @@
       object-fit:cover;
     }
 
-    /* draggable pin hint */
+    
     .pin-hint {
       font-size: 0.9rem;
       color: rgba(229,231,235,0.95); /* slate-200 */
     }
 
-    /* popup styles */
+    
     #confirmBox { display:none; }
   </style>
 </head>
 <body class="page-bg text-white">
 
-  <!-- HEADER (same look as menu/login) -->
+  
   <header class="w-full flex items-center justify-between p-5 px-8">
     <div class="flex items-center gap-3">
       <span class="material-symbols-outlined text-4xl text-[#1E90FF]">water_drop</span>
@@ -87,16 +87,16 @@
     </div>
   </header>
 
-  <!-- MAIN CARD -->
+  
   <main class="max-w-3xl mx-auto px-6 pb-20">
     <section class="glass-card rounded-2xl p-6 mt-8 shadow-lg">
       <h2 class="text-2xl font-bold text-white">Nova Denúncia</h2>
       <p class="text-slate-200 mt-1 max-w-prose">Registre um problema relacionado a água ou saneamento. Anexe fotos/vídeos e escolha o local no mapa.</p>
 
-      <!-- FORM -->
+      
       <form id="denunciaForm" class="mt-6 space-y-4">
 
-        <!-- Tipo -->
+        
         <div>
           <label class="block text-sm font-semibold text-slate-100 mb-2">Tipo de denúncia</label>
           <select id="tipo" required
@@ -109,7 +109,7 @@
           </select>
         </div>
 
-        <!-- Descrição -->
+        
         <div>
           <label class="block text-sm font-semibold text-slate-100 mb-2">Descrição</label>
           <textarea id="descricao" required
@@ -117,11 +117,11 @@
             placeholder="Descreva o problema com detalhes (ex.: endereço aproximado, ponto de referência, quando começou, etc.)"></textarea>
         </div>
 
-        <!-- Uploads -->
+        
         <div>
           <p class="text-sm font-semibold text-slate-100 mb-2">Anexar mídia</p>
 
-          <!-- hidden native inputs -->
+          
           <input id="fotoInput" type="file" accept="image/*" class="hidden" />
           <input id="videoInput" type="file" accept="video/*" class="hidden" />
 
@@ -137,11 +137,11 @@
             </button>
           </div>
 
-          <!-- preview -->
+          
           <div id="previewContainer" class="preview-media mt-4"></div>
         </div>
 
-        <!-- MAP selection -->
+        
         <div>
           <div class="flex items-center justify-between">
             <label class="text-sm font-semibold text-slate-100 mb-2">Localização (Recife)</label>
@@ -149,7 +149,7 @@
           </div>
 
           <div class="glass-card rounded-xl overflow-hidden border border-white/10">
-            <!-- map placeholder -->
+            
             <div id="map" class="w-full h-72"></div>
             <div class="p-3 border-t border-white/5">
               <p class="text-sm text-slate-200 mb-1">Arraste o pino no mapa para selecionar o local exato (toque e arraste em celular).</p>
@@ -161,7 +161,7 @@
           </div>
         </div>
 
-        <!-- actions -->
+        
         <div class="flex flex-col gap-3 mt-2">
           <button id="btnEnviar" type="button"
             class="w-full rounded-xl py-4 bg-[#1E90FF] text-white font-bold text-lg hover:brightness-95 transition">Enviar Denúncia</button>
@@ -171,7 +171,7 @@
       </form>
     </section>
 
-    <!-- extra section to ensure vertical scroll like requested -->
+    
     <section class="mt-8">
       <div class="glass-card rounded-2xl p-6 mt-2 shadow-lg">
         <h3 class="text-lg font-bold text-accent">Novidades</h3>
@@ -179,13 +179,13 @@
       </div>
     </section>
 
-    <!-- footer -->
+    
     <footer class="mt-8 text-center text-slate-300 text-sm">
       © 2025 Aquacife. Todos os direitos reservados.
     </footer>
   </main>
 
-  <!-- confirmation modal (hidden by default) -->
+  
   <div id="confirmBox" class="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm" style="display:none;">
     <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
       <h4 class="text-xl font-bold text-slate-900">Denúncia enviada!</h4>
@@ -197,15 +197,15 @@
     </div>
   </div>
 
-  <!-- Google Maps JS (substitua YOUR_API_KEY_HERE pela sua chave) -->
+  
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFRJIkFsPpicXLiBqTVYO0cutHRxeI2cY&callback=__initMap" async defer></script>
 
   <script>
-    // ---------- MAP ----------
+  
     let map, marker;
     const recife = { lat: -8.05428, lng: -34.8813 };
 
-    // this will be called by the Google Maps API once loaded
+    
     function __initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: recife,
@@ -232,14 +232,14 @@
       document.getElementById('coords').textContent = `Lat: ${lat} , Lng: ${lng}`;
     }
 
-    // Center Recife
+    
     function centerRecife() {
       map.setCenter(recife);
       marker.setPosition(recife);
       map.setZoom(14);
     }
 
-    // Try geolocation
+    
     document.getElementById('btnMyLoc').addEventListener('click', () => {
       if (!navigator.geolocation) return alert('Geolocalização não suportada neste navegador.');
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -254,7 +254,7 @@
 
     document.getElementById('btnResetPin').addEventListener('click', centerRecife);
 
-    // ---------- FILE INPUTS & PREVIEW ----------
+    
     const fotoInput = document.getElementById('fotoInput');
     const videoInput = document.getElementById('videoInput');
     const previewContainer = document.getElementById('previewContainer');
@@ -295,14 +295,14 @@
       showPreview(f);
     });
 
-    // ---------- FORM SUBMIT (validation + mock send) ----------
+    
     const form = document.getElementById('denunciaForm');
     const btnEnviar = document.getElementById('btnEnviar');
     const formError = document.getElementById('formError');
     const confirmBox = document.getElementById('confirmBox');
 
     btnEnviar.addEventListener('click', () => {
-      // simple validation
+      
       const tipo = document.getElementById('tipo').value.trim();
       const desc = document.getElementById('descricao').value.trim();
       if (!tipo || !desc) {
@@ -311,7 +311,7 @@
       }
       formError.classList.add('hidden');
 
-      // collect data
+    
       const data = {
         tipo,
         descricao: desc,
@@ -319,17 +319,17 @@
         timestamp: new Date().toISOString()
       };
 
-      // simulate send (here you would do fetch to your API)
+      
       console.log('Enviando denúncia (simulada):', data);
 
-      // show confirmation modal
+      
       confirmBox.style.display = 'flex';
     });
 
-    // confirm handlers
+    
     document.getElementById('confirmOk').addEventListener('click', () => {
       confirmBox.style.display = 'none';
-      // reset form
+      
       form.reset();
       clearPreview();
       centerRecife();
@@ -337,18 +337,18 @@
     });
 
     document.getElementById('confirmMenu').addEventListener('click', () => {
-      // go back to menu (same folder)
+      
       window.location.href = 'menu.html';
     });
 
-    // back button
+    
     document.getElementById('btnBackMenu').addEventListener('click', () => {
       window.location.href = 'menu.html';
     });
 
-    // If Google Maps script hasn't loaded yet (e.g. offline), create a fallback map stub
+    
     window.addEventListener('load', () => {
-      // if google is not defined within 2s, create a placeholder message
+      
       setTimeout(() => {
         if (typeof google === 'undefined') {
           const mapEl = document.getElementById('map');
